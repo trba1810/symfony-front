@@ -7,6 +7,25 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const payload = {
+      userName: userName,
+      email: email,
+      password: password,
+    };
+
+    fetch("http://127.0.0.1:8000/api/register", {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: { "content-type": "application/json" },
+    })
+      .then((response) =>
+        response.json().then((json) => {
+          console.log(json);
+        })
+      )
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (
@@ -14,17 +33,20 @@ const SignUp = () => {
       <h1>SignUp</h1>
       <form onSubmit={handleSubmit}>
         <input
+          placeholder="username"
           type="text"
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
         />
         <input
+          placeholder="email"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
-          type="passord"
+          placeholder="password"
+          type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
