@@ -29,29 +29,39 @@ const SignUp = () => {
   };
 
   return (
-    <div>
-      <h1>SignUp</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          placeholder="username"
-          type="text"
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-        />
-        <input
-          placeholder="email"
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          placeholder="password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Sign Up</button>
-      </form>
+    <div className="flex min-h-screen w-screen flex-col justify-center items-center px-0 py-0 lg:px-4 lg:py-6">
+      <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm">
+        <h1 className="text-xl font-bold mb-4 text-black">SignUp</h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            placeholder="Username"
+            type="text"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+            className="w-full p-2 border placeholder-black bg-gray-100 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <input
+            placeholder="Email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-2 border placeholder-black bg-gray-100 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <input
+            placeholder="Password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-2 border placeholder-black bg-gray-100 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            type="submit"
+            className="w-full p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300"
+          >
+            Sign Up
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

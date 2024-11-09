@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -28,9 +29,9 @@ export default function Header() {
                 stroke="currentColor"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M4 6h16M4 12h16m-7 6h7"
                 />
               </svg>
@@ -43,9 +44,9 @@ export default function Header() {
                 stroke="currentColor"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
@@ -90,23 +91,19 @@ export default function Header() {
             </div>
 
             <div className="hidden lg:flex lg:items-center lg:space-x-10">
-              <a
-                href="#"
-                title=""
+              <Link
+                to={`SignUp`}
                 className="text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
               >
-                {" "}
-                Sign up{" "}
-              </a>
-
-              <a
-                href="#"
-                title=""
+                Sign Up
+              </Link>{" "}
+              <Link
+                to={`Login`}
                 className="text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
               >
-                {" "}
-                Sign in{" "}
-              </a>
+                Login
+              </Link>{" "}
+              Sign in{" "}
             </div>
           </nav>
 

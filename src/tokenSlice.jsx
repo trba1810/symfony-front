@@ -12,4 +12,6 @@ export const tokenSlice = createSlice({
   },
 });
 
+export const { setter } = tokenSlice.actions;
+
 export default tokenSlice.reducer;
