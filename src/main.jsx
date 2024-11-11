@@ -6,6 +6,8 @@ import Login from "./components/Login.jsx";
 import SignUp from "./components/SignUp.jsx";
 import { Provider } from "react-redux";
 import store from "./store.jsx";
+import Projects from "./components/Project/Projects.jsx";
+import CreateProject from "./components/Project/CreateProject.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -15,6 +17,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/" element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
+          <Route path="projects" element={<Projects />} />
+          <Route path="createproject" element={<CreateProject />} />
         </Routes>
       </Router>
     </Provider>
