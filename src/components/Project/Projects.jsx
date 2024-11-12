@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import Header from "../Header";
 
 const Projects = () => {
   const token = useSelector((state) => state.token.value);
@@ -37,6 +38,7 @@ const Projects = () => {
 
   return (
     <div>
+      <Header />
       <h2>Projects</h2>
       <p>Welcome to the Projects page!</p>
       <ul>

@@ -1,22 +1,23 @@
 import React, { useState } from "react";
-import Datepicker from "react-tailwindcss-datepicker";
 import { useSelector } from "react-redux";
+import Header from "../Header";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useNavigate } from "react-router-dom";
 
 const CreateProject = () => {
   const token = useSelector((state) => state.token.value);
   const [name, setName] = useState("");
   const [totalHours, setTotalHours] = useState("");
-  const [date, setDate] = useState({
-    startDate: null,
-    endDate: null,
-  });
+  const [startedAt, setStartedAt] = useState(new Date());
+  let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
       name: name,
       totalHours: totalHours,
-      date: date,
+      startedAt: startedAt,
     };
 
     fetch("http://127.0.0.1:8000/api/projects/create", {
@@ -30,6 +31,7 @@ const CreateProject = () => {
       .then((response) =>
         response.json().then((json) => {
           console.log(json);
+          navigate("/projects");
         })
       )
       .catch((err) => {
@@ -39,6 +41,7 @@ const CreateProject = () => {
 
   return (
     <div>
+      <Header />
       <h1>create project page</h1>
       // napravi formu sa ovim poljima: ime projekta,datum pocetka i brojem sati
       u rasponu od 0-24
@@ -54,11 +57,9 @@ const CreateProject = () => {
               className="w-full p-2 border placeholder-black bg-gray-100 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
-            <Datepicker
-              useRange={false}
-              asSingle={true}
-              value={date}
-              onChange={(date) => setDate(date)}
+            <DatePicker
+              selected={startedAt}
+              onChange={(date) => setStartedAt(date)}
             />
             <input
               placeholder="Hours"
