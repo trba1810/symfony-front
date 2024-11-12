@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setter } from "../tokenSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const token = useSelector((state) => state.token.value);
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,6 +25,7 @@ export default function Login() {
       .then((response) => response.json())
       .then((json) => {
         dispatch(setter(json.token));
+        navigate("/");
         console.log(json);
       })
       .catch((err) => {

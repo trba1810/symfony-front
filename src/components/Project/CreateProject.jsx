@@ -1,13 +1,41 @@
 import React, { useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
+import { useSelector } from "react-redux";
 
 const CreateProject = () => {
+  const token = useSelector((state) => state.token.value);
   const [name, setName] = useState("");
   const [totalHours, setTotalHours] = useState("");
   const [date, setDate] = useState({
     startDate: null,
     endDate: null,
   });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const payload = {
+      name: name,
+      totalHours: totalHours,
+      date: date,
+    };
+
+    fetch("http://127.0.0.1:8000/api/projects/create", {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) =>
+        response.json().then((json) => {
+          console.log(json);
+        })
+      )
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   return (
     <div>
@@ -17,7 +45,7 @@ const CreateProject = () => {
       <div className="flex min-h-screen w-screen flex-col justify-center items-center px-0 py-0 lg:px-4 lg:py-6">
         <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-lg ">
           <h1 className="text-xl font-bold mb-4 text-black">Create Project</h1>
-          <form className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <input
               placeholder="Name"
               type="text"
