@@ -23,6 +23,7 @@ const Projects = () => {
         });
         const data = await response.json();
         setProjects(data);
+        console.log(data);
       } catch (e) {
         setError(e.message);
       } finally {
@@ -39,15 +40,49 @@ const Projects = () => {
   return (
     <div>
       <Header />
-      <h2>Projects</h2>
-      <p>Welcome to the Projects page!</p>
-      <ul>
-        {projects.map((project) => (
-          <li key={project.id}>{project.name}</li>
-        ))}
-      </ul>
+      <h2 className="text-2xl font-bold mb-4">Projects</h2>
+      <p className="mb-4">Welcome to the Projects page!</p>
 
-      <button onClick={() => navigate("/createproject")}>Create Project</button>
+      <table className="w-3/4 mx-auto border-collapse border border-gray-200">
+        <thead>
+          <tr className="bg-gray-100 text-red-600">
+            <th className="border border-gray-300 p-2">Name</th>
+            <th className="border border-gray-300 p-2">Start Date</th>
+            <th className="border border-gray-300 p-2">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {projects.map((project) => (
+            <tr key={project.id} className="hover:bg-gray-800">
+              <td
+                className="border border-gray-300 p-2"
+                style={{ display: "none" }}
+              >
+                {project.id}
+              </td>{" "}
+              <td className="border border-gray-300 p-2">{project.name}</td>
+              <td className="border border-gray-300 p-2">
+                {project.startedAt}
+              </td>
+              <td className="border border-gray-300 p-2">
+                <button
+                  onClick={() => navigate(`/editproject/${project.id}`)}
+                  className="flex items-center justify-center w-full bg-blue-500 text-white rounded-md p-2 hover:bg-blue-600 transition duration-150 ease-in-out"
+                >
+                  Edit
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <button
+        onClick={() => navigate("/createproject")}
+        className="mt-4 bg-green-500 text-white rounded-md px-4 py-2 hover:bg-green-600 transition duration-150 ease-in-out"
+      >
+        Create Project
+      </button>
     </div>
   );
 };

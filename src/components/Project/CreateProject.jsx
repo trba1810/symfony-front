@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 const CreateProject = () => {
   const token = useSelector((state) => state.token.value);
   const [name, setName] = useState("");
-  const [totalHours, setTotalHours] = useState("");
   const [startedAt, setStartedAt] = useState(new Date());
   let navigate = useNavigate();
 
@@ -16,7 +15,6 @@ const CreateProject = () => {
     e.preventDefault();
     const payload = {
       name: name,
-      totalHours: totalHours,
       startedAt: startedAt,
     };
 
@@ -60,15 +58,6 @@ const CreateProject = () => {
             <DatePicker
               selected={startedAt}
               onChange={(date) => setStartedAt(date)}
-            />
-            <input
-              placeholder="Hours"
-              type="number"
-              min="0"
-              max="24"
-              value={totalHours}
-              onChange={(e) => setTotalHours(e.target.value)}
-              className="w-full p-2 border placeholder-black bg-gray-100 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <button
               type="submit"
