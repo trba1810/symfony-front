@@ -34,6 +34,26 @@ const Projects = () => {
     fetchProjects();
   }, []);
 
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(
+        `http://127.0.0.1:8000/api/projects/delete/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setProjects((prevProjects) =>
+        prevProjects.filter((project) => project.id !== id)
+      );
+    } catch (error) {
+      console.error("Error deleting project:", error);
+    }
+  };
+
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
@@ -59,7 +79,7 @@ const Projects = () => {
                 style={{ display: "none" }}
               >
                 {project.id}
-              </td>{" "}
+              </td>
               <td className="border border-gray-300 p-2">{project.name}</td>
               <td className="border border-gray-300 p-2">
                 {project.startedAt}
@@ -71,12 +91,17 @@ const Projects = () => {
                 >
                   Edit
                 </button>
+                <button
+                  onClick={() => handleDelete(project.id)}
+                  className="flex items-center justify-center w-full bg-red-500 text-white rounded-md p-2 hover:bg-red-600 transition duration-150 ease-in-out"
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-
       <button
         onClick={() => navigate("/createproject")}
         className="mt-4 bg-green-500 text-white rounded-md px-4 py-2 hover:bg-green-600 transition duration-150 ease-in-out"
