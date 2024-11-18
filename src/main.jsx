@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import store from "./store.jsx";
 import Projects from "./components/Project/Projects.jsx";
 import CreateProject from "./components/Project/CreateProject.jsx";
+import EditProject from "./components/Project/EditProject.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="signup" element={<SignUp />} />
           <Route path="projects" element={<Projects />} />
           <Route path="createproject" element={<CreateProject />} />
+          <Route path="editproject" element={<EditProject />} />
         </Routes>
       </Router>
     </Provider>
