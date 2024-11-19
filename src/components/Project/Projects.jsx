@@ -23,7 +23,6 @@ const Projects = () => {
         });
         const data = await response.json();
         setProjects(data);
-        console.log(data);
       } catch (e) {
         setError(e.message);
       } finally {

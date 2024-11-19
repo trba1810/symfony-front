@@ -20,7 +20,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="signup" element={<SignUp />} />
           <Route path="projects" element={<Projects />} />
           <Route path="createproject" element={<CreateProject />} />
-          <Route path="editproject" element={<EditProject />} />
+          <Route path="editproject/:id" element={<EditProject />} />
         </Routes>
       </Router>
     </Provider>
