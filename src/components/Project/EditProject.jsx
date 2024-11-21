@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Header from "../Header";
 
 const EditProject = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [project, setProject] = useState("");
   const token = useSelector((state) => state.token.value);
   const [name, setName] = useState("");
@@ -28,7 +29,7 @@ const EditProject = () => {
     fetchProject();
   }, [id, token]);
 
-  const handleSubmit = async (id) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
       name: name,
@@ -58,7 +59,7 @@ const EditProject = () => {
       <div className="flex min-h-screen w-screen flex-col justify-center items-center px-0 py-0 lg:px-4 lg:py-6">
         <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-lg ">
           <h1 className="text-xl font-bold mb-4 text-black">Edit Project</h1>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} method="POST" className="space-y-4">
             <input
               placeholder={project.name}
               type="text"
